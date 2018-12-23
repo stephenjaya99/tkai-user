@@ -39,11 +39,7 @@ spec:
       containers:
       - name: tokens-app
         # Replace  with your project ID or use `make template`
-<<<<<<< HEAD:tokens.yaml
-        image: gcr.io/<your-project-id>/tokens
-=======
         image: gcr.io/sturdy-dragon-220813/polls
->>>>>>> configure gcp project:polls.yaml
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.

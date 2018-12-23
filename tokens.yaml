@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License
 
-# This file configures the polls application . The frontend serves
+# This file configures the tokens application . The frontend serves
 # public web traffic.
 
 # The bookshelf frontend replication controller ensures that at least 3
@@ -26,20 +26,20 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: polls
+  name: tokens
   labels:
-    app: polls
+    app: tokens
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: polls
+        app: tokens
     spec:
       containers:
-      - name: polls-app
+      - name: tokens-app
         # Replace  with your project ID or use `make template`
-        image: gcr.io/<your-project-id>/polls
+        image: gcr.io/<your-project-id>/tokens
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.
@@ -74,7 +74,7 @@ spec:
             mountPath: /etc/ssl/certs
           - name: cloudsql
             mountPath: /cloudsql
-      # [END proxy_container] 
+      # [END proxy_container]
       # [START volumes]
       volumes:
         - name: cloudsql-oauth-credentials
@@ -85,13 +85,13 @@ spec:
             path: /etc/ssl/certs
         - name: cloudsql
           emptyDir:
-      # [END volumes]        
+      # [END volumes]
 # [END kubernetes_deployment]
 
 ---
 
 # [START service]
-# The polls service provides a load-balancing proxy over the polls app
+# The tokens service provides a load-balancing proxy over the tokens app
 # pods. By specifying the type as a 'LoadBalancer', Container Engine will
 # create an external HTTP load balancer.
 # For more information about Services see:
@@ -101,14 +101,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: polls
+  name: tokens
   labels:
-    app: polls
+    app: tokens
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 8080
   selector:
-    app: polls
+    app: tokens
 # [END service]

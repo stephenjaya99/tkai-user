@@ -39,7 +39,7 @@ spec:
       containers:
       - name: tokens-app
         # Replace  with your project ID or use `make template`
-        image: gcr.io/sturdy-dragon-220813/polls
+        image: gcr.io/sturdy-dragon-220813/tokens
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.
@@ -64,8 +64,7 @@ spec:
       - image: gcr.io/cloudsql-docker/gce-proxy:1.05
         name: cloudsql-proxy
         command: ["/cloud_sql_proxy", "--dir=/cloudsql",
-                  "-instances=sturdy-dragon-220813:us-central1:tkai-user=tcp:5432",
-                  "-credential_file=/secrets/cloudsql/credentials.json"]
+                  "-instances=sturdy-dragon-220813:us-central1:tkai-token=tcp:5432"]
         volumeMounts:
           - name: cloudsql-oauth-credentials
             mountPath: /secrets/cloudsql

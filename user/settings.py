@@ -53,7 +53,7 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'user.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'user.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -82,7 +82,7 @@ DATABASES = {
         # If you are using Cloud SQL for MySQL rather than PostgreSQL, set
         # 'ENGINE': 'django.db.backends.mysql' instead of the following.
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'polls',
+        'NAME': 'tkai-user',
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': '127.0.0.1',
